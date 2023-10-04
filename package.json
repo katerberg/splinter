@@ -17,5 +17,11 @@
     "url": "https://github.com/katerberg/splinter"
   },
   "author": "Mark Katerberg <katerberg@fastmail.fm> (katerberg.net)",
-  "license": "AGPL-3.0-or-later"
+  "license": "AGPL-3.0-or-later",
+  "dependencies": {
+    "rot-js": "^2.2.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
 }
