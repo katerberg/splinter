@@ -1,0 +1,21 @@
+{
+  "name": "splinter",
+  "version": "0.0.1",
+  "description": "A roguelike engine to ease building of traditional roguelikes in JS and HTML",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "rogue",
+    "roguelike",
+    "rot.js",
+    "toolkit"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/katerberg/splinter"
+  },
+  "author": "Mark Katerberg <katerberg@fastmail.fm> (katerberg.net)",
+  "license": "AGPL-3.0-or-later"
+}
