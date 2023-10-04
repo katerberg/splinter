@@ -3,8 +3,12 @@
   "version": "0.0.1",
   "description": "A roguelike engine to ease building of traditional roguelikes in JS and HTML",
   "main": "index.js",
+  "bugs": "https://github.com/katerberg/splinter/issues",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "lint": "npm run lint:base -- --fix",
+    "lint:ci": "npm run lint:base",
+    "lint:base": "eslint --ext js,ts src"
   },
   "keywords": [
     "rogue",
@@ -22,6 +26,14 @@
     "rot-js": "^2.2.0"
   },
   "devDependencies": {
+    "@types/jest": "^29.5.5",
+    "eslint": "^8.50.0",
+    "eslint-config-airbnb-typescript": "^17.1.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-import": "^2.28.1",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-prettier": "^5.0.0",
     "jest": "^29.7.0"
-  }
+  },
+  "types": "./lib/index.d.ts"
 }
