@@ -5,7 +5,7 @@
   "bugs": "https://github.com/katerberg/splinter/issues",
   "scripts": {
     "test": "jest",
-    "example": "npm run build && cp dist/splinter.js exampleGame/dist/dist/splinter.js && http-server exampleGame/dist",
+    "example": "npm run build && cp dist/splinter.js exampleGame/dist/splinter.js && http-server exampleGame/dist",
     "build": "npm run build:lib && npm run build:dist",
     "build:lib": "tsc",
     "build:dist": "rollup --bundleConfigAsCjs -c > dist/splinter.js",
