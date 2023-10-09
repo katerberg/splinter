@@ -2,10 +2,13 @@
   "name": "splinter",
   "version": "0.0.1",
   "description": "A roguelike engine to ease building of traditional roguelikes in JS and HTML",
-  "main": "index.js",
   "bugs": "https://github.com/katerberg/splinter/issues",
   "scripts": {
     "test": "jest",
+    "example": "npm run build && cp dist/splinter.js exampleGame/dist/dist/splinter.js && http-server exampleGame/dist",
+    "build": "npm run build:lib && npm run build:dist",
+    "build:lib": "tsc",
+    "build:dist": "rollup --bundleConfigAsCjs -c > dist/splinter.js",
     "lint": "npm run lint:base -- --fix",
     "lint:ci": "npm run lint:base",
     "lint:base": "eslint --ext js,ts src"
@@ -26,14 +29,37 @@
     "rot-js": "^2.2.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.23.0",
+    "@babel/core": "^7.23.0",
+    "@babel/preset-env": "^7.22.20",
     "@types/jest": "^29.5.5",
+    "@types/node": "^20.8.2",
     "eslint": "^8.50.0",
     "eslint-config-airbnb-typescript": "^17.1.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-import": "^2.28.1",
     "eslint-plugin-jsx-a11y": "^6.7.1",
     "eslint-plugin-prettier": "^5.0.0",
-    "jest": "^29.7.0"
+    "http-server": "^14.1.1",
+    "jest": "^29.7.0",
+    "rollup": "^4.0.2",
+    "typescript": "^5.2.2"
+  },
+  "main": "dist/splinter.js",
+  "module": "lib/index.js",
+  "babel": {
+    "sourceType": "unambiguous",
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "ie": 10
+          },
+          "loose": true
+        }
+      ]
+    ]
   },
   "types": "./lib/index.d.ts"
 }
