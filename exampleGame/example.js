@@ -1,2 +1,2 @@
-var d = Splinter.Util.mod(4,3);
-console.log(d)
+import { name } from './src/Game.js';
+console.log(name)

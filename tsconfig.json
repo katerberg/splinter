@@ -3,7 +3,7 @@
         "strict": true,
         "noImplicitReturns": true,
         "noImplicitThis": true,
-        "target": "es2017",
+        "target": "es2015",
         "declaration": true,
         "noUnusedLocals": true,
         "moduleResolution": "node",
