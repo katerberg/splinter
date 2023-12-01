@@ -1,10 +1,15 @@
 import * as ROT from 'rot-js';
 import * as util from './utils.js';
 
-const {Display} = ROT;
+const {DIRS, FOV, RNG, Map, Display, Scheduler} = ROT;
 const Util = util;
 const Splinter = {
   Display,
+  Scheduler,
+  RNG,
+  Map,
+  FOV,
+  DIRS,
   Util,
 };
 

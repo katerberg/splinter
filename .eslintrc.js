@@ -22,6 +22,7 @@ module.exports = {
     'plugin:prettier/recommended',
     'plugin:@typescript-eslint/recommended',
   ],
+  ignorePatterns: ['/exampleGame'],
   rules: {
     '@typescript-eslint/ban-ts-comment': 'error',
     '@typescript-eslint/explicit-function-return-type': 'error',

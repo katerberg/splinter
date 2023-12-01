@@ -14,7 +14,8 @@
     "build:dist": "rollup --bundleConfigAsCjs -c > dist/splinter.js",
     "lint": "npm run lint:base -- --fix",
     "lint:ci": "npm run lint:base",
-    "lint:base": "eslint --ext js,ts src"
+    "lint:base": "eslint --ext js,ts src",
+    "lint:example": "eslint exampleGame"
   },
   "keywords": [
     "rogue",
