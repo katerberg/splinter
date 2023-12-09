@@ -1,6 +1,6 @@
 import * as ROT from 'rot-js';
-import Modal from './Modal.js';
-import * as util from './utils.js';
+import Modal from './Modal';
+import * as util from './utils';
 
 const {DIRS, FOV, RNG, Map, Display, Scheduler, Path} = ROT;
 const Util = util;

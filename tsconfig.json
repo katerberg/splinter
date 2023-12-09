@@ -8,6 +8,7 @@
         "noUnusedLocals": true,
         "moduleResolution": "node",
         "noUnusedParameters": true,
+        "esModuleInterop": true,
         "outDir": "lib"
     },
     "files": ["src/index.ts"],

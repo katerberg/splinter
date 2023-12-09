@@ -1,5 +1,5 @@
 import {Display} from 'rot-js';
-import {symbols} from './constants.js';
+import {symbols} from './constants';
 
 export default class Modal implements EventListenerObject {
   display: Display;
