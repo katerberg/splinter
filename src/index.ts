@@ -1,7 +1,7 @@
 import * as ROT from 'rot-js';
 import * as util from './utils.js';
 
-const {DIRS, FOV, RNG, Map, Display, Scheduler} = ROT;
+const {DIRS, FOV, RNG, Map, Display, Scheduler, Path} = ROT;
 const Util = util;
 const Splinter = {
   Display,
@@ -9,6 +9,7 @@ const Splinter = {
   RNG,
   Map,
   FOV,
+  Path,
   DIRS,
   Util,
 };

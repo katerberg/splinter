@@ -3,7 +3,8 @@ import Player from './Player.js';
 import Ladder from './Ladder.js';
 import Modal from './Modal.js';
 import Cache from './Cache.js';
-import {dimensions, symbols, colors, modalChoices} from './constants.js';
+import Enemy from './Enemy.js';
+import {dimensions, enemies, symbols, colors, modalChoices} from './constants.js';
 
 export class Game {
   constructor() {
@@ -41,7 +42,7 @@ export class Game {
     this.generateMap();
     this.drawWalls();
     this.populatePlayer();
-    // this.populateEnemies();
+    this.populateEnemies();
     this.init();
   }
 
@@ -79,11 +80,11 @@ export class Game {
     this.player.xp = state.player.xp;
     this.scheduler.add(this.player, true);
     this.enemies = [];
-    // state.enemies.forEach((e) => {
-    //   const enemy = new Enemy(this, e.x, e.y, enemies[e.type.toUpperCase()], e.name);
-    //   this.enemies.push(enemy);
-    //   this.scheduler.add(enemy, true);
-    // });
+    state.enemies.forEach((e) => {
+      const enemy = new Enemy(this, e.x, e.y, enemies[e.type.toUpperCase()], e.name);
+      this.enemies.push(enemy);
+      this.scheduler.add(enemy, true);
+    });
     this.init();
   }
 
@@ -254,11 +255,8 @@ export class Game {
     this.drawFov();
   }
 
-  playAgainCallback(res) {
+  playAgainCallback() {
     this.resetAll();
-    if (!res) {
-      this.player.handleOpenMenu();
-    }
   }
 
   loseGame(enemy) {
@@ -275,48 +273,48 @@ export class Game {
     new Modal(this.display, this.playAgainCallback.bind(this), text, 40, 20, 5, modalChoices.yn);
   }
 
-  //   populateEnemies() {
-  //     if (this.level < 9) {
-  //       for (let i = 0; i <= (this.level > 5 ? 5 : this.level); i++) {
-  //         const enemy = this.createActor(Enemy, [enemies.GOBLIN, RNG.getItem(goblins)]);
-  //         enemy.draw();
-  //         this.enemies.push(enemy);
-  //         this.scheduler.add(enemy, true);
-  //       }
-  //     }
-  //     if (this.level >= 1 && this.level < 8) {
-  //       const sub = this.level - 5;
-  //       const numberOfSkeletons = sub > 0 ? this.level - sub : this.level;
-  //       for (let i = 0; i < numberOfSkeletons; i++) {
-  //         const enemy = this.createActor(Enemy, [enemies.SKELETON, RNG.getItem(skeletons)]);
-  //         enemy.draw();
-  //         this.enemies.push(enemy);
-  //         this.scheduler.add(enemy, true);
-  //       }
-  //     }
-  //     if (this.level >= 4) {
-  //       for (let i = 0; i < this.level - 3; i++) {
-  //         const enemy = this.createActor(Enemy, [enemies.TROLL, RNG.getItem(trolls)]);
-  //         enemy.draw();
-  //         this.enemies.push(enemy);
-  //         this.scheduler.add(enemy, true);
-  //       }
-  //     }
-  //     if (this.level > 7) {
-  //       for (let i = 0; i <= this.level - 7; i++) {
-  //         const enemy = this.createActor(Enemy, [enemies.DRAGON, RNG.getItem(dragons)]);
-  //         enemy.draw();
-  //         this.enemies.push(enemy);
-  //         this.scheduler.add(enemy, true);
-  //       }
-  //     }
-  //     if (this.level === 10) {
-  //       const enemy = this.createActor(Enemy, [enemies.BALROG, 'Gothmog']);
-  //       enemy.draw();
-  //       this.enemies.push(enemy);
-  //       this.scheduler.add(enemy, true);
-  //     }
-  //   }
+  populateEnemies() {
+    if (this.level < 9) {
+      for (let i = 0; i <= (this.level > 5 ? 5 : this.level); i++) {
+        const enemy = this.createActor(Enemy, [enemies.GOBLIN, 'Zarro']);
+        enemy.draw();
+        this.enemies.push(enemy);
+        this.scheduler.add(enemy, true);
+      }
+    }
+    if (this.level >= 1 && this.level < 8) {
+      const sub = this.level - 5;
+      const numberOfSkeletons = sub > 0 ? this.level - sub : this.level;
+      for (let i = 0; i < numberOfSkeletons; i++) {
+        const enemy = this.createActor(Enemy, [enemies.SKELETON, 'Bart']);
+        enemy.draw();
+        this.enemies.push(enemy);
+        this.scheduler.add(enemy, true);
+      }
+    }
+    if (this.level >= 4) {
+      for (let i = 0; i < this.level - 3; i++) {
+        const enemy = this.createActor(Enemy, [enemies.TROLL, 'Urg']);
+        enemy.draw();
+        this.enemies.push(enemy);
+        this.scheduler.add(enemy, true);
+      }
+    }
+    if (this.level > 7) {
+      for (let i = 0; i <= this.level - 7; i++) {
+        const enemy = this.createActor(Enemy, [enemies.DRAGON, 'Rax']);
+        enemy.draw();
+        this.enemies.push(enemy);
+        this.scheduler.add(enemy, true);
+      }
+    }
+    if (this.level === 10) {
+      const enemy = this.createActor(Enemy, [enemies.BALROG, 'Gothmog']);
+      enemy.draw();
+      this.enemies.push(enemy);
+      this.scheduler.add(enemy, true);
+    }
+  }
 
   nextLevel() {
     this.scheduler.clear();
@@ -324,7 +322,7 @@ export class Game {
     this.level += 1;
     this.enemies.length = 0;
     this.generateMap();
-    // this.populateEnemies();
+    this.populateEnemies();
     this.drawLevel();
     this.seenSpaces = {};
     if (!this.map[this.player.coordinates]) {
