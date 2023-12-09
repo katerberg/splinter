@@ -32,7 +32,6 @@ module.exports = {
     '@typescript-eslint/no-var-requires': 'error',
     '@typescript-eslint/no-explicit-any': 'error',
     'global-require': 'error',
-    'import/no-default-export': 'error',
     'import/no-extraneous-dependencies': ['error', {devDependencies: true}],
     'import/order': [
       'error',
