@@ -1,7 +1,30 @@
+import {Display} from 'rot-js';
 import {symbols} from './constants.js';
 
-export default class Modal {
-  constructor(display, callback, text, width, positionX, positionY, modalChoices) {
+export class Modal implements EventListenerObject {
+  display: Display;
+
+  height: number;
+
+  width: number;
+
+  positionX: number;
+
+  positionY: number;
+
+  callback: (userResponse: string) => string | undefined;
+
+  modalChoices?: {[key: number]: string};
+
+  constructor(
+    display: Display,
+    callback: (userResponse: string) => string | undefined,
+    text: string,
+    width: number,
+    positionX: number,
+    positionY: number,
+    modalChoices?: {[key: number]: string},
+  ) {
     this.display = display;
     this.callback = callback;
     this.width = width;
@@ -15,17 +38,17 @@ export default class Modal {
     window.addEventListener('keydown', this);
   }
 
-  handleEvent(evt) {
-    const keyCode = evt.keyCode;
+  handleEvent(evt: KeyboardEvent): void {
+    const {keyCode} = evt;
     if (this.modalChoices && !(keyCode in this.modalChoices)) {
       return;
     }
     const choices = this.modalChoices || {};
-    window.removeEventListener('keydown', this);
+    window.removeEventListener('keydown', this as EventListenerObject);
     this.callback(choices[keyCode]);
   }
 
-  addOutline() {
+  addOutline(): void {
     for (let x = this.positionX + 1; x < this.positionX + this.width; x++) {
       this.display.draw(x, this.positionY, symbols.MODAL_X, null, null);
       this.display.draw(x, this.positionY + this.height, symbols.MODAL_X, null, null);
@@ -46,11 +69,11 @@ export default class Modal {
     );
   }
 
-  addText(text) {
+  addText(text: string): number {
     return this.display.drawText(this.positionX + 1, this.positionY + 1, text, this.width - 2);
   }
 
-  clear() {
+  clear(): void {
     for (let x = this.positionX + 1; x < this.positionX + this.width; x++) {
       for (let y = this.positionY + 1; y < this.positionY + this.height; y++) {
         this.display.draw(x, y, ' ', null, null);

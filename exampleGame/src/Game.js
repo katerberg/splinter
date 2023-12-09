@@ -1,15 +1,15 @@
 import {buildInstructionsModal} from './modalBuilder.js';
 import Player from './Player.js';
 import Ladder from './Ladder.js';
-import Modal from './Modal.js';
 import Cache from './Cache.js';
 import Enemy from './Enemy.js';
-import {dimensions, enemies, symbols, colors, modalChoices} from './constants.js';
+import {dimensions, enemies, symbols, colors} from './constants.js';
 
 export class Game {
   constructor() {
     this.display = new splinter.default.Display({width: dimensions.WIDTH, height: dimensions.HEIGHT});
     this.devmode = window.location.href.indexOf('devmode') > -1;
+
     if (window.localStorage.getItem('state')) {
       try {
         this.loadFromState(JSON.parse(window.localStorage.getItem('state')));
@@ -263,14 +263,14 @@ export class Game {
     this.storeState(true);
     this.scheduler.clear();
     const text = `You have lost after taking a brutal blow from a roaming ${enemy.type} named ${enemy.name}.\n\nWould you like to play again?`;
-    new Modal(this.display, this.playAgainCallback.bind(this), text, 40, 20, 5, modalChoices.yn);
+    new splinter.default.Modal(this.display, this.playAgainCallback.bind(this), text, 40, 20, 5);
   }
 
   winGame() {
     this.storeState(true);
     this.scheduler.clear();
     const text = 'You have defeated Gothmog, Lord of the Balrogs! Would you like to play again?';
-    new Modal(this.display, this.playAgainCallback.bind(this), text, 40, 20, 5, modalChoices.yn);
+    new splinter.default.Modal(this.display, this.playAgainCallback.bind(this), text, 40, 20, 5);
   }
 
   populateEnemies() {

@@ -65,8 +65,8 @@ export const symbols = {
 
 export const modalChoices = {
   yn: {
-    89: true, // Y
-    78: false, // N
+    89: 'true', // Y
+    78: 'false', // N
   },
 };
 

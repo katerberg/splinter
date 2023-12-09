@@ -1,7 +1,6 @@
 import {xpLevels, dimensions, modalChoices, movementKeymap, validKeymap} from './constants.js';
 import Cache from './Cache.js';
 import Ladder from './Ladder.js';
-import Modal from './Modal.js';
 
 function getDisplayText(gear) {
   if (gear) {
@@ -158,7 +157,7 @@ class Player {
     HP: ${this.displayStat('maxHp', this.gear.Amulet)}    ${getDisplayText(this.gear.Amulet) || 'No amulet'}
     XP: ${`${this.xp}`.padStart(3)}
     LVL: ${`${this.level}`.padStart(2)}`;
-    new Modal(this.game.display, pickupResponse, gearText, 70, 5, 5);
+    new splinter.default.Modal(this.game.display, pickupResponse, gearText, 70, 5, 5);
   }
 
   equip(gear) {
@@ -199,13 +198,13 @@ class Player {
         this.resolver();
       } else {
         const pickupResponse = this.buildModalCallback((res) => {
-          if (res) {
+          if (res === 'true') {
             this.game.removeCache(this.coordinates);
             this.equip(contents);
           }
           this.resolver();
         });
-        new Modal(
+        new splinter.default.Modal(
           this.game.display,
           pickupResponse,
           `${contents.display}. Would you like to equip it?`,
@@ -217,11 +216,19 @@ class Player {
       }
     } else if (contents instanceof Ladder) {
       const nextLevelResponse = this.buildModalCallback((res) => {
-        if (res) {
+        if (res === 'true') {
           this.game.nextLevel();
         }
       });
-      new Modal(this.game.display, nextLevelResponse, 'Are you ready to delve deeper?', 20, 20, 5, modalChoices.yn);
+      new splinter.default.Modal(
+        this.game.display,
+        nextLevelResponse,
+        'Are you ready to delve deeper?',
+        20,
+        20,
+        5,
+        modalChoices.yn,
+      );
     } else {
       this.resolver();
     }
