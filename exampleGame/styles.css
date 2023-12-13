@@ -1,0 +1,28 @@
+html, body {
+    height: 100%;
+    width: 100%;
+    margin:0;
+    padding: 0;
+}
+
+h1 {
+    margin: 0;
+    padding: 24px 8px;
+    font-size: 24px;
+    line-height: 24px;
+}
+p {
+    margin: 0;
+    padding: 8px;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+#game.vertical-constraint > canvas {
+    width: auto;
+    height: calc(100vh - 120px);  
+}
+#game.horizontal-constraint > canvas {
+    width: 100%;
+    height: auto;  
+}

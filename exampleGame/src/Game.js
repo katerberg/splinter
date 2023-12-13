@@ -20,7 +20,7 @@ export class Game {
     } else {
       this.resetAll();
     }
-    document.body.appendChild(this.display.getContainer());
+    document.getElementById('game').appendChild(this.display.getContainer());
     if (!this.devmode) {
       this.player.releaseInput();
       buildInstructionsModal(this.display, () => {
