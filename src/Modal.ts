@@ -48,7 +48,7 @@ export default class Modal implements EventListenerObject {
     this.callback(choices[keyCode]);
   }
 
-  addOutline(): void {
+  private addOutline(): void {
     for (let x = this.positionX + 1; x < this.positionX + this.width; x++) {
       this.display.draw(x, this.positionY, symbols.MODAL_X, null, null);
       this.display.draw(x, this.positionY + this.height, symbols.MODAL_X, null, null);
@@ -69,11 +69,11 @@ export default class Modal implements EventListenerObject {
     );
   }
 
-  addText(text: string): number {
+  private addText(text: string): number {
     return this.display.drawText(this.positionX + 1, this.positionY + 1, text, this.width - 2);
   }
 
-  clear(): void {
+  private clear(): void {
     for (let x = this.positionX + 1; x < this.positionX + this.width; x++) {
       for (let y = this.positionY + 1; y < this.positionY + this.height; y++) {
         this.display.draw(x, y, ' ', null, null);
